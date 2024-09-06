@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Organizer</title>
+    <style>
+        /* CSS will be added here to style the app */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .task-list {
+            margin-bottom: 20px;
+        }
+
+        .task-list input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .task-list button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .spreadsheet {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .spreadsheet input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .note-section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Organizer</h1>
+
+        <!-- Task List Section -->
+        <div class="task-list">
+            <input type="text" id="new-task" placeholder="Enter a new task">
+            <button onclick="addTask()">Add Task</button>
+            <ul id="task-list"></ul>
+        </div>
+
+        <!-- Spreadsheet Section -->
+        <div class="spreadsheet">
+            <input type="number" id="cell1" placeholder="0" oninput="calculateSum()">
+            <input type="number" id="cell2" placeholder="0" oninput="calculateSum()">
+            <input type="number" id="cell3" placeholder="0" oninput="calculateSum()">
+            <input type="number" id="cell4" placeholder="0" oninput="calculateSum()">
+            <input type="text" id="result" disabled placeholder="Result">
+        </div>
+
+        <!-- Notes Section -->
+        <div class="note-section">
+            <textarea placeholder="Write your notes here..."></textarea>
+        </div>
+    </div>
+
+    <div class="footer">
+        Task Organizer App - Built with HTML, CSS & JavaScript
+    </div>
+
+    <script>
+        // JavaScript for interactivity
+
+        function addTask() {
+            const taskInput = document.getElementById('new-task');
+            const taskList = document.getElementById('task-list');
+
+            if (taskInput.value !== "") {
+                const li = document.createElement('li');
+                li.textContent = taskInput.value;
+                taskList.appendChild(li);
+                taskInput.value = ""; // Clear input after adding
+            }
+        }
+
+        function calculateSum() {
+            const cell1 = parseFloat(document.getElementById('cell1').value) || 0;
+            const cell2 = parseFloat(document.getElementById('cell2').value) || 0;
+            const cell3 = parseFloat(document.getElementById('cell3').value) || 0;
+            const cell4 = parseFloat(document.getElementById('cell4').value) || 0;
+
+            const result = cell1 + cell2 + cell3 + cell4;
+            document.getElementById('result').value = result;
+        }
+    </script>
+</body>
+</html>
